@@ -60,10 +60,22 @@ document.addEventListener('DOMContentLoaded', () => {
         mainContent.classList.remove('hidden');
 
         // Start YouTube Music (Unmute and Play)
-        if (player && player.unMute) {
-            player.unMute();
-            player.playVideo();
-            musicBtn.classList.add('playing');
+        if (player) {
+            try {
+                player.unMute();
+                player.setVolume(100);
+                player.playVideo();
+                musicBtn.classList.add('playing');
+
+                // Backup second attempt for stubborn mobile browsers
+                setTimeout(() => {
+                    if (player.getPlayerState() !== 1) {
+                        player.playVideo();
+                    }
+                }, 500);
+            } catch (e) {
+                console.log("YouTube error:", e);
+            }
         }
 
         // Initial Confetti
