@@ -11,6 +11,7 @@ function onYouTubeIframeAPIReady() {
             'controls': 0,
             'loop': 1,
             'playlist': 'VBg94eFBqEE',
+            'playsinline': 1, // Penting agar tidak fullscreen di HP
             'modestbranding': 1,
             'rel': 0
         },
