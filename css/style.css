@@ -365,7 +365,7 @@ h3 {
 }
 
 .dino-3 {
-    bottom: 15%;
+    bottom: 10%;
     left: 12%;
     animation-delay: 4s;
 }
@@ -373,15 +373,26 @@ h3 {
 .balloon-1 {
     top: 25%;
     right: 15%;
-    font-size: 4rem;
+    font-size: clamp(2rem, 8vw, 4rem);
     animation-delay: 1s;
 }
 
 .balloon-2 {
     bottom: 25%;
-    right: 20%;
-    font-size: 3.5rem;
+    right: 10%;
+    font-size: clamp(1.5rem, 6vw, 3.5rem);
     animation-delay: 3s;
+}
+
+@media (max-width: 768px) {
+    .decoration span {
+        font-size: clamp(2.5rem, 12vw, 4rem) !important;
+    }
+    .dino-1 { top: 10%; left: 5%; }
+    .dino-2 { top: 50%; right: 5%; }
+    .dino-3 { bottom: 5%; left: 5%; }
+    .balloon-1 { top: 20%; right: 5%; }
+    .balloon-2 { bottom: 15%; right: 8%; }
 }
 
 @keyframes float {
