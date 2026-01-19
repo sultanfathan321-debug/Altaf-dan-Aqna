@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Undangan Ulang Tahun Alfat & Aqna</title>
+    <meta name="description"
+        content="Kalian diundang ke perayaan hari bahagia Alfat dan Aqna! Datang dan rayakan bersama kami.">
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Fredoka:wght@300..700&family=Quicksand:wght@300..700&display=swap"
+        rel="stylesheet">
+
+    <!-- Styles -->
+    <link rel="stylesheet" href="css/style.css">
+
+    <!-- Libraries -->
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+</head>
+
+<body>
+    <!-- Custom Cursor -->
+    <div id="custom-cursor">❤️</div>
+
+    <!-- Floating Decorations -->
+    <div class="decoration dino-1"><span style="font-size: 4rem;">🦖</span></div>
+    <div class="decoration dino-2"><span style="font-size: 5rem;">🦕</span></div>
+    <div class="decoration dino-3"><span style="font-size: 4.5rem;">🦖</span></div>
+    <div class="decoration balloon-1">🎈</div>
+    <div class="decoration balloon-2">🎈</div>
+
+    <!-- Music Toggle -->
+    <div id="music-control" class="music-control">
+        <button id="music-btn" class="music-btn">
+            <span class="icon">🎵</span>
+        </button>
+    </div>
+
+    <!-- Invitation Overlay (Click to Open) -->
+    <div id="invitation-overlay" class="overlay">
+        <div class="overlay-content">
+            <div class="dino-animation">
+                <!-- SVG or Image will go here -->
+                <span style="font-size: 8rem;">🦕</span>
+            </div>
+            <h1>Undangan Eksklusif</h1>
+            <p>Untuk: <strong>Teman-teman & Keluarga</strong></p>
+            <button id="open-invitation">Buka Undangan</button>
+        </div>
+    </div>
+
+    <main id="main-content" class="hidden">
+        <!-- Hero Section -->
+        <section class="hero">
+            <div class="hero-bg"></div>
+            <div class="container" data-aos="zoom-in">
+                <div class="hero-content">
+                    <div class="dino-header">
+                        <span style="font-size: 6rem;">🦖</span>
+                    </div>
+                    <span class="badge">Acara Ulang Tahun</span>
+                    <h1 class="main-title">Altaf & Aqna</h1>
+                    <p class="subtitle">Dengan ini kami ingin mengundang Bapak/Ibu/Saudara/Saudari dalam perayaan ulang
+                        tahun putra pertama kami.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Event Details -->
+        <section class="details">
+            <div class="container">
+                <div class="glass-card">
+                    <div class="details-grid">
+                        <div class="detail-item">
+                            <div class="icon">📅</div>
+                            <h3>Waktu</h3>
+                            <p>Sabtu, 24 Januari 2026</p>
+                            <p>Pukul 15:00 - Selesai</p>
+                        </div>
+                        <div class="detail-item">
+                            <div class="icon">📍</div>
+                            <h3>Lokasi</h3>
+                            <p>Rumah Susun Blok Melati Lantai 4</p>
+                        </div>
+                    </div>
+                    <div class="invitation-footer">
+                        <p class="emphasis">"Tidak menerima bingkisan"</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Greeting Wall -->
+        <section class="greetings">
+            <div class="container">
+                <h2>Kirim Ucapan</h2>
+                <div class="greeting-form-container">
+                    <form id="greeting-form">
+                        <input type="text" id="name" placeholder="Nama Kamu" required>
+                        <textarea id="message" placeholder="Tulis ucapan lucumu di sini..." required></textarea>
+                        <button type="submit" id="submit-btn">Kirim Ucapan 🎉</button>
+                    </form>
+                </div>
+                <div id="greetings-wall" class="greetings-wall">
+                    <!-- Greetings will appear here -->
+                </div>
+            </div>
+        </section>
+
+        <footer>
+            <p>Dibuat dengan ❤️ untuk Alfat & Aqna</p>
+        </footer>
+    </main>
+
+    <!-- Background Audio -->
+    <audio id="bg-music" loop preload="auto">
+        <source src="https://assets.mixkit.co/music/preview/mixkit-funny-and-cheerful-9.mp3" type="audio/mpeg">
+    </audio>
+
+    <script src="js/script.js"></script>
+</body>
+
+</html>
