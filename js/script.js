@@ -1,9 +1,31 @@
+let player;
+
+function onYouTubeIframeAPIReady() {
+    player = new YT.Player('youtube-player', {
+        height: '0',
+        width: '0',
+        videoId: 'VBg94eFBqEE',
+        playerVars: {
+            'autoplay': 0,
+            'controls': 0,
+            'loop': 1,
+            'playlist': 'VBg94eFBqEE'
+        },
+        events: {
+            'onReady': onPlayerReady
+        }
+    });
+}
+
+function onPlayerReady(event) {
+    // Player is ready
+}
+
 document.addEventListener('DOMContentLoaded', () => {
     const cursor = document.getElementById('custom-cursor');
     const overlay = document.getElementById('invitation-overlay');
     const openBtn = document.getElementById('open-invitation');
     const mainContent = document.getElementById('main-content');
-    const bgMusic = document.getElementById('bg-music');
     const musicBtn = document.getElementById('music-btn');
     const greetingForm = document.getElementById('greeting-form');
     const greetingsWall = document.getElementById('greetings-wall');
@@ -14,7 +36,6 @@ document.addEventListener('DOMContentLoaded', () => {
             cursor.style.left = e.clientX + 'px';
             cursor.style.top = e.clientY + 'px';
 
-            // Randomly switch icon occasionally or on click
             if (Math.random() > 0.99) {
                 cursor.innerText = Math.random() > 0.5 ? '❤️' : '💍';
             }
@@ -34,9 +55,11 @@ document.addEventListener('DOMContentLoaded', () => {
         overlay.classList.add('fade-out');
         mainContent.classList.remove('hidden');
 
-        // Start Music
-        bgMusic.play().catch(e => console.log("Audio play failed: ", e));
-        musicBtn.classList.add('playing');
+        // Start YouTube Music
+        if (player && player.playVideo) {
+            player.playVideo();
+            musicBtn.classList.add('playing');
+        }
 
         // Initial Confetti
         confetti({
@@ -45,18 +68,20 @@ document.addEventListener('DOMContentLoaded', () => {
             origin: { y: 0.6 }
         });
 
-        // Run GSAP Animations
         animateSections();
     });
 
     // 3. Music Control
     musicBtn.addEventListener('click', () => {
-        if (bgMusic.paused) {
-            bgMusic.play();
-            musicBtn.classList.add('playing');
-        } else {
-            bgMusic.pause();
-            musicBtn.classList.remove('playing');
+        if (player && player.getPlayerState) {
+            const state = player.getPlayerState();
+            if (state === YT.PlayerState.PLAYING) {
+                player.pauseVideo();
+                musicBtn.classList.remove('playing');
+            } else {
+                player.playVideo();
+                musicBtn.classList.add('playing');
+            }
         }
     });
 
@@ -67,7 +92,6 @@ document.addEventListener('DOMContentLoaded', () => {
         const name = document.getElementById('name').value;
         const message = document.getElementById('message').value;
 
-        // Create greeting card
         const card = document.createElement('div');
         card.className = 'greeting-card';
         card.innerHTML = `
@@ -77,7 +101,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
         greetingsWall.prepend(card);
 
-        // Emoji Blast / Confetti
         const scalar = 4;
         const partyIcon = confetti.shapeFromText({ text: '🎉', scalar });
         const heartIcon = confetti.shapeFromText({ text: '❤️', scalar });
@@ -112,11 +135,9 @@ document.addEventListener('DOMContentLoaded', () => {
         setTimeout(shoot, 150);
         setTimeout(shoot, 300);
 
-        // Clear form
         greetingForm.reset();
     });
 
-    // 5. GSAP Animations
     function animateSections() {
         gsap.from('.main-title', {
             duration: 1.5,
