@@ -6,10 +6,13 @@ function onYouTubeIframeAPIReady() {
         width: '0',
         videoId: 'VBg94eFBqEE',
         playerVars: {
-            'autoplay': 0,
+            'autoplay': 1,
+            'mute': 1,
             'controls': 0,
             'loop': 1,
-            'playlist': 'VBg94eFBqEE'
+            'playlist': 'VBg94eFBqEE',
+            'modestbranding': 1,
+            'rel': 0
         },
         events: {
             'onReady': onPlayerReady
@@ -55,8 +58,9 @@ document.addEventListener('DOMContentLoaded', () => {
         overlay.classList.add('fade-out');
         mainContent.classList.remove('hidden');
 
-        // Start YouTube Music
-        if (player && player.playVideo) {
+        // Start YouTube Music (Unmute and Play)
+        if (player && player.unMute) {
+            player.unMute();
             player.playVideo();
             musicBtn.classList.add('playing');
         }
